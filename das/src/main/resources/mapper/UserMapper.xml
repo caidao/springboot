@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="paner.das.mapper.UserMapper">
+
+    <select id="getSelfDefByUserId" parameterType="int" resultType="map">
+        select level, dept_id from tbl_auth_user_dept where user_id = #{userID} order by level
+    </select>
+
+    <select id="getUserUtpRole" parameterType="int" resultType="string">
+        select nickname from tbl_user where user_id = #{userID} limit 1
+    </select>
+
+    <select id="getSelfHrMarket" parameterType="map" resultType="map">
+        select distinct bu_id,bu_name,corps_id,corps_name,regiment_id,
+        regiment_name,battalion_id,battalion_name,utp_id,utp_name from
+        dim_hr_market_department_hour
+        <where>
+            battalion_id is not null and utp_id is not null and regiment_id is not null
+            <if test="selfCondition != null">
+                and #{selfCondition}
+            </if>
+        </where>
+    </select>
+
+   <select id="getDepeManageRoleId" parameterType="int" resultType="string">
+       select manage_role_id from dim_hr_zps_user_privilege where walle_id=#{userID}
+   </select>
+
+    <select id="getIsBreakfastAdmin" parameterType="int" resultType="string">
+         select is_super_admin from st_usr_breakfast_user_privileges where user_id = #{userID}  limit 1
+    </select>
+
+    <select id="getBodAdminByUserID" parameterType="int" resultType="string">
+        select a.user_id from dw_usr_bod_user_info a left join tbl_user b on a.email=b.email where a.is_super_admin=1 and b.user_id=#{userID}
+    </select>
+</mapper>
