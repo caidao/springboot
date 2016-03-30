@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-    <property name="appid" value="dt.appboard"/>
+    <property name="appid" value="paner"/>
     <property name="LOG_HOME" value="/Users/pan/code/springboot/log" />
 
 
