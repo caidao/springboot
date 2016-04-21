@@ -25,6 +25,6 @@ public class Example {
     @RequestMapping("/")
     String home() {
         logger.info("启动成功");
-        return userMapper.getUserUtpRole(33031695);
+        return userMapper.getUser(45133);
     }
 }
