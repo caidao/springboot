@@ -2,10 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="paner.das.mapper.UserMapper">
-
-
-
     <select id="getUser" parameterType="int" resultType="string">
-        select nickname from user_tbl where id = #{userID} limit 1
+        select name from user_tbl where id = #{userID}
     </select>
+
+    <insert id="addQQUserinfo" parameterType="paner.das.entity.QQUserinfoModel">
+        replace into qquser(nickname,gender,province,city,year,figureurl,figureurl_qq_1)
+        VALUES (#{nickname},#{gender},#{province},#{city},#{year},#{figureurl},#{figureurl_qq_1})
+    </insert>
 </mapper>

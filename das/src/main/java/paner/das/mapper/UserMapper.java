@@ -1,5 +1,7 @@
 package paner.das.mapper;
 
+import paner.das.entity.QQUserinfoModel;
+
 import java.util.List;
 import java.util.Map;
 
@@ -9,5 +11,7 @@ import java.util.Map;
 public interface UserMapper {
 
     String getUser(int userID);
+
+    void addQQUserinfo(QQUserinfoModel model);
 
 }

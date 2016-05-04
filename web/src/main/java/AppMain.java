@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ImportResource;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = "paner.controller,paner.das.mapper")
+@ComponentScan(basePackages = "paner.controller,paner.service,paner.das.mapper")
 @ImportResource("classpath:mybatis-context.xml")
 public class AppMain {
 

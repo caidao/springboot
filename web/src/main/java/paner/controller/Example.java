@@ -22,7 +22,7 @@ public class Example {
     @Resource
     private UserMapper userMapper;
 
-    @RequestMapping("/")
+    @RequestMapping("/test")
     String home() {
         logger.info("启动成功");
         return userMapper.getUser(45133);
