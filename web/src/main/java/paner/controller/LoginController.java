@@ -1,5 +1,6 @@
 package paner.controller;
 
+import com.wordnik.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import javax.annotation.Resource;
  * Created by Administrator on 2016/4/21.
  */
 @RestController
+
 public class LoginController {
 
     Logger logger = LoggerFactory.getLogger(LoginController.class);

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ImportResource;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan(basePackages = "paner.controller,paner.service,paner.das.mapper")
-@ImportResource("classpath:mybatis-context.xml")
+@ImportResource("classpath:spring-web.xml")
 public class AppMain {
 
     public static void main(String[] args) throws Exception {
