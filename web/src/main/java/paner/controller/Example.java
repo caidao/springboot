@@ -1,15 +1,14 @@
 package paner.controller;
 
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
+
+import com.wordnik.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
 import paner.das.mapper.UserMapper;
+import paner.model.QQRespModel;
 
 import javax.annotation.Resource;
 
@@ -19,24 +18,56 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping(value = "/example")
-@Api(value = "测试api",description = "测试api")
+@Api(value = "/example",description = "test api")
 public class Example {
 
      Logger logger = LoggerFactory.getLogger(Example.class);
 
-    @Resource
-    private UserMapper userMapper;
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     @ApiOperation(notes="获取用户信息",httpMethod = "GET",value = "获取用户信息")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful retrieval of user detail"),
+            @ApiResponse(code = 404, message = "User with given username does not exist"),
+            @ApiResponse(code = 500, message = "Internal server error")})
     public String home() {
         logger.info("启动成功");
-        return userMapper.getUser(45133);
+        return "启动成功1";
     }
 
+    @ApiOperation(value = "测试2",nickname = "测试2别名",authorizations = {
+            @Authorization(
+                    value="petoauth",
+                    scopes = {
+                            @AuthorizationScope(
+                                    scope = "add:pet",
+                                    description = "allows adding of pets")
+                    }
+            )
+    })
+    @ApiImplicitParams({
+            @io.swagger.annotations.ApiImplicitParam(name="name",value = "用户名",required = false,
+                    dataType = "string",paramType = "query",defaultValue = "yiwen.pan")
+    })
     @RequestMapping(value = "/test2",method = RequestMethod.GET)
-    public String test2() {
+    public String test2(@RequestParam(value="name", defaultValue="World") String name) {
         logger.info("启动成功");
-        return userMapper.getUser(45133);
+        return "启动成功2："+name;
     }
+
+    @ApiOperation(value = "post测试")
+    @RequestMapping(value = "/test3",method = RequestMethod.POST)
+    @ApiImplicitParams({
+            @io.swagger.annotations.ApiImplicitParam(name="name",value = "用户名",required = false,
+                    dataType = "string",paramType = "query",defaultValue = "yiwen.pan")
+    })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful retrieval of user detail",response = QQRespModel.class),
+            @ApiResponse(code = 404, message = "User with given username does not exist"),
+            @ApiResponse(code = 500, message = "Internal server error")})
+    public Object test3(@RequestBody QQRespModel model,@RequestParam(value="name", defaultValue="World")String name){
+        logger.info("启动成功");
+        return model;
+    }
+
 }

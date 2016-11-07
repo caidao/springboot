@@ -1,5 +1,6 @@
 package paner.swagger;
 
+import com.mangofactory.swagger.plugin.EnableSwagger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -30,8 +31,8 @@ public class ApplicationSwaggerConfig {
                 "V3.8.0",
                 "www.baidu.com",
                 "panyiwen2009@gmail.com",
-                "",
-                ""
+                "测试连接",
+                "这又是啥"
         );
         docket.apiInfo(apiInfo).select().
                 apis(RequestHandlerSelectors.basePackage("paner.controller"))

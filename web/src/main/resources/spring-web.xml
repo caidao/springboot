@@ -28,11 +28,12 @@
         1、加入对静态资源的处理；js git png
         2、允许使用“/”做资源映射
     -->
-    <mvc:default-servlet-handler/>
+    <!--<mvc:default-servlet-handler/>-->
     <import resource="mybatis-context.xml"/>
 
     <!--扫描web相关-->
     <context:component-scan base-package="paner.controller"/>
+    <!--、-->
     <bean name="applicationSwaggerConfig" class="paner.swagger.ApplicationSwaggerConfig"></bean>
 
 </beans>
