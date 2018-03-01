@@ -1,6 +1,11 @@
 package paner.service;
 
 import com.google.gson.Gson;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import paner.das.entity.QQUserinfoModel;
 import paner.das.mapper.UserMapper;
